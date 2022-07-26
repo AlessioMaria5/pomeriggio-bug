@@ -34,31 +34,45 @@ const avatars = [
     'https://cdn-icons-png.flaticon.com/512/145/145843.png',
     'https://cdn-icons-png.flaticon.com/512/3940/3940403.png'
 ];
+
 const users = [];
 const usersContainer = document.getElementById('users');
-
-for (let i = 0; i < firstNames; i++) {
-    let newUser = createUserObject();
+//alla condizione del for "i<firstNames" mancava il .length per fare riferimento alla lunghezza dell'array.
+for (let i = 0; i < firstNames.length; i++) {
+    //abbiamo inserito i parametri assegnati alla funzione che prima mancavano
+    let newUser = createUserObject(firstNames[i], lastNames[i],emails[i],phoneNumbers[i],avatars[i]);
 
     users.push(newUser);
+    
+    
 }
 
-console.log(newUser);
 
-users.forEach((i, element) => {
+
+
+// element e d i erano invertiti, perchè il primo è un parametro e il secondo è l'indice. ( nel for each )
+users.forEach((element, i) => {
     const newUserCard = document.createElement('div');
-    newUserCard.innerHTML = `<img src="${element.avatar}">`;
+    newUserCard.innerHTML += `<img src="${element.avatar}">`;
     newUserCard.innerHTML += `<h2>${element.fullName}</h2>`;
     newUserCard.innerHTML += `<h4>${element.email}</h4>`;
     newUserCard.innerHTML += `<h4>${element.phoneNumber}</h4>`;
 
     usersContainer.append(newUserCard);
+    console.log('ciao')
 });
 
-function createUserObject(firstName, lastName, email, phoneNumber) {
+function createUserObject(firstName, lastName, email, phoneNumber,avatar) {
+    console.log(firstName, lastName, email, phoneNumber,avatar)
     let newUser = {};
     newUser.fullName = firstName + ' ' + lastName;
     newUser.email = email;
     newUser.phoneNumber = phoneNumber;
     newUser.avatar = avatar;
+   
+    //mancava il return della funzione che restituiva i valori da stampare
+    return newUser
+    
+    
 }
+
