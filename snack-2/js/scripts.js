@@ -8,7 +8,12 @@ let userNumber;
 
 do {
     userNumber = prompt('Inserisci un numero');
-} while (userNumber > 1);
+    //nella condizione di while era riportato userNumber > 1 il che rendeva impossibile
+    // la selezione di altri operatori che non fossero 0 e 1. 
+
+    //Abbiamo sostituito il > 1 con < 1 in modo che l'utente possa selezionare tutti i valori possibili al di sopra a 1 ( compreso )
+    
+} while (userNumber < 1);
 
 const mainList = document.getElementById('main-list');
 
